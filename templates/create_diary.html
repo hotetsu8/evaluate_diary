@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>新しい日記をつける</h1>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.title.label }}
+        {{ form.title(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.diary.label }}
+        {{ form.diary(class="form-control", rows=4, maxlength=30) }}
+    </div>
+    <button type="submit" class="btn btn-primary">保存</button>
+    <a href="{{ url_for('diary_calendar') }}" class="btn btn-secondary">キャンセル</a>
+</form>
+{% endblock %}

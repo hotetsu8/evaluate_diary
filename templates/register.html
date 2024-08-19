@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>ユーザー登録</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.username.label }}
+        {{ form.username(size=20) }}
+    </div>
+    <div>
+        {{ form.password.label }}
+        {{ form.password(size=20) }}
+    </div>
+    <div>
+        {{ form.confirm_password.label }}
+        {{ form.confirm_password(size=20) }}
+    </div>
+    <input type="submit" value="登録">
+</form>
+<p>既にアカウントをお持ちの方は <a href="{{ url_for('login') }}">こちら</a> からログインしてください。</p>
+{% endblock %}

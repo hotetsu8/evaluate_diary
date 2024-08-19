@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="text-center">
+    <h1 class="mb-4">感情分析結果</h1>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">日記</h5>
+            <p class="card-text">{{ diary }}</p>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">感情</h5>
+            <p class="card-text">{{ sentiment }}</p>
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">戻る</a>
+</div>
+{% endblock %}

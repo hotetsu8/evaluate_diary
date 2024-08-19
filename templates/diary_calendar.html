@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>日記カレンダー</h1>
+<div class="calendar">
+    <h2>{{ year }}年 {{ month }}月</h2>
+    <p>本日 ({{ today }}) の日記数: {{ today_count }} / 3</p>
+    {% if can_add_diary %}
+        <a href="{{ url_for('create_diary') }}" class="btn btn-primary">新しい日記を書く</a>
+    {% else %}
+        <p class="text-warning">本日の日記の制限に達しました。既存の日記を削除してから新しい日記を書いてください。</p>
+    {% endif %}
+    
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+                <th>日</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for week in calendar %}
+                <tr>
+                {% for day in week %}
+                    {% if day != 0 %}
+                        {% set current_date = '%04d-%02d-%02d'|format(year, month, day) %}
+                        <td class="day-cell {% if current_date in diaries %}has-diary{% endif %}">
+                            <div class="day-number">{{ day }}</div>
+                            {% if current_date in diaries %}
+                                <div class="diary-info">
+                                    <a href="{{ url_for('diary_detail', date=current_date) }}" class="diary-link">
+                                        日記 ({{ diaries[current_date]['count'] }})
+                                    </a>
+                                    <div class="avg-score">平均: {{ diaries[current_date]['avg_score'] }}</div>
+                                    {% for title in diaries[current_date]['titles'] %}
+                                        <div class="diary-title">{{ title[:10] }}...</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="navigation-buttons">
+        <a href="{{ url_for('diary_calendar', year=(year if month > 1 else year-1), month=(month-1 if month > 1 else 12)) }}" class="btn btn-secondary">&lt; 前月</a>
+        <a href="{{ url_for('diary_calendar', year=(year if month < 12 else year+1), month=(month+1 if month < 12 else 1)) }}" class="btn btn-secondary">次月 &gt;</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .calendar {
+        margin-bottom: 20px;
+    }
+    .day-cell {
+        height: 100px;
+        vertical-align: top;
+        padding: 5px;
+    }
+    .day-number {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .has-diary {
+        background-color: #e6f3ff;
+    }
+    .diary-info {
+        font-size: 0.8em;
+    }
+    .diary-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+    .avg-score {
+        color: #6c757d;
+    }
+    .diary-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .navigation-buttons {
+        margin-top: 10px;
+        text-align: center;
+    }
+    .text-warning {
+        color: #ffc107;
+    }
+</style>
+{% endblock %}

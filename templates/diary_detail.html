@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{ date }}の日記</h1>
+{% if diaries['entries'] %}
+    {% for entry in diaries['entries'] %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ entry['title'] }}</h5>
+                <p class="card-text">{{ entry['content'] }}</p>
+                <p class="card-text"><small class="text-muted">スコア: {{ entry['score'] }}</small></p>
+                <a href="{{ url_for('edit_diary', id=entry['id']) }}" class="btn btn-primary">編集</a>
+                <form action="{{ url_for('delete_diary_route', id=entry['id']) }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>この日の日記はありません。</p>
+{% endif %}
+<a href="{{ url_for('diary_calendar') }}" class="btn btn-secondary">カレンダーに戻る</a>
+{% endblock %}
