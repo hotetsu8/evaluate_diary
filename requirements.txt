@@ -1,7 +1,5 @@
 gunicorn==20.0.4       # 必ず必要なので記載する
 requests==2.26.0
-numpy==1.19.2
-pandas==1.1.3
 Flask==2.3.2
 Flask-WTF==1.1.1
 WTForms==3.0.1
