@@ -5,3 +5,6 @@ body {
 .navbar {
     margin-bottom: 20px;
 }
+.form-group input {
+    width: 250px;  /* 必要に応じてサイズを調整 */
+}
