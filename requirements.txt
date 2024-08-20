@@ -4,6 +4,7 @@ Flask==2.3.2
 Flask-WTF==1.1.1
 WTForms==3.0.1
 Werkzeug==2.3.7
--f https://download.pytorch.org/whl/torch_stable.html
-torch==2.0.1+cpu
-transformers==4.32.0
+https://download.pytorch.org/whl/cpu/torch-2.0.1%2Bcpu-cp39-cp39-linux_x86_64.whl
+transformers[sentencepiece]==4.32.0
+heroku plugins:install heroku-repo
+heroku repo:purge_cache -a your-app-name
