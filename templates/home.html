@@ -1,7 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>ミニマルな日記アプリへようこそ</h1>
-<p>このアプリでは、日々の出来事や感情を記録し、AIがあなたの1日を採点します。</p>
-<a href="{{ url_for('create_diary') }}" class="btn btn-primary">新しい日記をつける</a>
-<a href="{{ url_for('diary_calendar') }}" class="btn btn-secondary">カレンダーを見る</a>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1 class="display-4 mb-4">ミニマルな日記アプリへようこそ</h1>
+            <p class="lead mb-5">このアプリでは、日々の出来事や感情を記録し、AIがあなたの1日を採点します。シンプルで使いやすい日記体験をお楽しみください。</p>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <a href="{{ url_for('create_diary') }}" class="btn btn-primary btn-lg px-4 gap-3">
+                    <i class="fas fa-pen"></i> 新しい日記をつける
+                </a>
+                <a href="{{ url_for('diary_calendar') }}" class="btn btn-outline-secondary btn-lg px-4">
+                    <i class="fas fa-calendar-alt"></i> カレンダーを見る
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

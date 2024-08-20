@@ -1,19 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="text-center">
-    <h1 class="mb-4">感情分析結果</h1>
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">日記</h5>
-            <p class="card-text">{{ diary }}</p>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center mb-4">感情分析結果</h1>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-book me-2"></i>日記</h5>
+                    <p class="card-text">{{ diary }}</p>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-heart me-2"></i>感情</h5>
+                    <p class="card-text">{{ sentiment }}</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>戻る
+                </a>
+            </div>
         </div>
     </div>
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title">感情</h5>
-            <p class="card-text">{{ sentiment }}</p>
-        </div>
-    </div>
-    <a href="{{ url_for('index') }}" class="btn btn-secondary">戻る</a>
 </div>
 {% endblock %}
