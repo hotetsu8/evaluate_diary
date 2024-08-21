@@ -8,3 +8,4 @@ Werkzeug==2.3.7
 -f https://download.pytorch.org/whl/torch_stable.html
 torch==2.0.1+cpu
 transformers[sentencepiece]==4.31.0
+accelerate==0.20.3
